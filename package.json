@@ -1,0 +1,20 @@
+{
+	"name": "perstorp",
+	"version": "1.1.0",
+	"description": "A file based routing library",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
+	"files": [
+		"lib"
+	],
+	"scripts": {
+		"build": "tsc --pretty --module nodenext src/*.ts --outDir lib --declaration"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^22.5.4",
+		"typescript": "^5.5.4"
+	}
+}
