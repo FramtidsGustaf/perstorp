@@ -1,3 +1,9 @@
+<div align="center">
+  <a href="https://hono.dev">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Perstorp_vapen.svg" width="200" height="auto" alt="Perstorp Municipal Sheild"/>
+  </a>
+</div>
+
 A Typescript compatible file based router for [Node.js](https://nodejs.org/).
 
 Made for sending json and getting json.
@@ -59,40 +65,52 @@ Create a file called **index.ts** in the new directory.
 
 /api/v1/routes/hello/index.ts
 
-> #### Get function
->
-> The function has to have the name **get**
->
-> ```ts
-> import type {ReqHandler} from "perstorp";
->
-> export const get: ReqHandler({res}) => {
->    res.json({message: "World"})
-> }
-> ```
+#### Get function
 
-> #### Data
->
-> To get the data that is sent with the request just use the data parameter in your request handler.
->
-> ```ts
-> import type {ReqHandler} from "perstorp";
->
-> export const post: ReqHandler({res, data}) => {
->   console.log(data) // Outputs json recieved in the request
->   res.json({message: "World"})
-> }
-> ```
+The function has to have the name **get**
 
-> #### Search parameters
->
-> To get the search params for the request just use the params parameter in your request handler
->
-> ```ts
-> import type {ReqHandler} from "perstorp"
->
-> export const post: ReqHandler({res, params}) => {
->   console.log(params) // Outputs search params
->   res.json({message: "World"})
-> }
-> ```
+```ts
+import type { ReqHandler } from "perstorp";
+
+export const get: ReqHandler({ res }) => {
+   res.json({message: "World"})
+}
+```
+
+#### Data
+
+To get the data that is sent with the request just use the data parameter in your request handler.
+
+```ts
+import type { ReqHandler } from "perstorp";
+
+export const post: ReqHandler({ res, data }) => {
+  console.log(data) // Outputs json recieved in the request
+  res.json({message: "World"})
+}
+```
+
+#### Search parameters
+
+To get the search params for the request just use the params parameter in your request handler
+
+```ts
+import type { ReqHandler } from "perstorp";
+
+export const post: ReqHandler({ res, params }) => {
+  console.log(params) // Outputs search params
+  res.json({message: "World"})
+}
+```
+
+#### Sending a JSON response
+
+Use the json function on the res object
+
+```ts
+import type { Reqhandler } from "perstorp";
+
+export const get: ReqHandler({ res }) => {
+	res.json({message: "World"}) // No need to stringify it. Perstorp does that for you.
+}
+```
