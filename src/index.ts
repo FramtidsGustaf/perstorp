@@ -1,6 +1,6 @@
-import { boomServer } from "./server";
+import { perstorp } from "./server";
 import { Req, Res, Cors, HTTPMethod, ReqHandler, BoomConfig } from "./types";
 
-export default boomServer;
+export default perstorp;
 
 export type { Req, Res, Cors, HTTPMethod, ReqHandler, BoomConfig };

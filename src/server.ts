@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { execReq } from "./exec-req/execReq";
 
-import type { Req, Res, ThrowError, BoomServer, HTTPMethod } from "./types";
+import type { Req, Res, ThrowError, Perstorp, HTTPMethod } from "./types";
 
 import { cors } from "./utils/cors";
 import { logger } from "./utils/logger";
@@ -11,7 +11,7 @@ import { findConfig } from "./utils/findConfig";
 /**
  * This function creates a server that listens for incoming requests and executes the appropriate handler based on the request method and path.
  */
-export const boomServer = () => {
+export const perstorp = () => {
 	return createServer(async function (req: Req, res: Res) {
 		const errors: string[] = [];
 
@@ -57,5 +57,5 @@ export const boomServer = () => {
 		if (config.logger) {
 			logger({ req, res, errors });
 		}
-	} as any) as BoomServer;
+	} as any) as Perstorp;
 };
