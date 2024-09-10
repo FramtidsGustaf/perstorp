@@ -1,7 +1,5 @@
 <div align="center">
-  <a href="https://hono.dev">
     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Perstorp_vapen.svg" width="200" height="auto" alt="Perstorp Municipal Sheild"/>
-  </a>
 </div>
 
 A Typescript compatible file based router for [Node.js](https://nodejs.org/).
