@@ -6,7 +6,7 @@ export interface Res extends ServerResponse<IncomingMessage> {
     }) => void;
 }
 export type HTTPMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-export type BoomServer = Server<typeof IncomingMessage, typeof ServerResponse>;
+export type Perstorp = Server<typeof IncomingMessage, typeof ServerResponse>;
 export interface Params {
     [key: string]: string;
 }
