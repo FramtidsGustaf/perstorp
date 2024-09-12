@@ -1,4 +1,4 @@
-import type { DataParser } from "./types.d.ts";
+import type { DataParser } from "./types";
 
 // Data parser function
 export const dataParser: DataParser = async ({ req, throwError, rawData }) => {

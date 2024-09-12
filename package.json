@@ -1,19 +1,21 @@
 {
 	"name": "perstorp",
-	"version": "1.1.5",
+	"version": "1.2.0",
 	"description": "A file based routing library",
-	"main": "./lib/index.js",
-	"types": "./lib/index.d.ts",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"files": [
-		"lib"
+		"dist"
 	],
 	"scripts": {
-		"build": "tsc --pretty --module nodenext src/*.ts --outDir lib --declaration"
+		"build": "tsup",
+		"dev": "tsx watch --ignore node_modules ./*.ts"
 	},
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^22.5.4",
+		"tsup": "^8.2.4",
 		"typescript": "^5.5.4"
 	},
 	"keywords": [
@@ -25,5 +27,6 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/FramtidsGustaf/perstorp.git"
-	}
+	},
+	"type": "module"
 }

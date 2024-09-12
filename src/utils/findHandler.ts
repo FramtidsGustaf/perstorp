@@ -1,14 +1,14 @@
 import { resolve } from "path";
-import type { ReqHandler } from "../types.d.ts";
-import type { FindHandler } from "./types.d.ts";
+import type { ReqHandler } from "../types";
+import type { FindHandler } from "./types";
 
 //This function is used to find the handler for a given path and method
 export const findHandler: FindHandler = async ({ method, config, path }) => {
 	const fileEnding = config.typescript ? ".ts" : ".js";
 	const lowerCaseMethod = method.toLowerCase();
 	const modulePath = `${resolve("./")}${
-		config.default.routesPath
-	}${path}/index${fileEnding}`;
+		config.routesPath
+	}${path}index${fileEnding}`;
 
 	try {
 		const module = await import(modulePath);

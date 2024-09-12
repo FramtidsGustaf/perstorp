@@ -28,7 +28,7 @@ export const perstorp = () => {
 		const config = await findConfig();
 
 		if (!config) {
-			errors.push("No boom.config file found");
+			errors.push("No perstorp.config file found");
 			res.statusCode = 500;
 			res.end();
 			logger({ req, res, errors });

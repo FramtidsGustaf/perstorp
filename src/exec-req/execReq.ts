@@ -32,7 +32,7 @@ export const execReq: ExecReq = async ({
 		setTimeout(() => {
 			res.statusCode = 408;
 			res.end();
-		}, config.default.timeout || 3000);
+		}, config.timeout || 3000);
 
 		if (method !== "GET") {
 			req.on("data", async (rawData: any) => {

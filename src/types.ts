@@ -36,7 +36,7 @@ export type Cors = {
 	headers: string[];
 };
 
-export interface BoomConfig {
+export interface PerstorpConfig {
 	routesPath: string;
 	cors: Cors;
 	timeout?: number;

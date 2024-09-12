@@ -5,7 +5,7 @@ import type {
 	ThrowError,
 	HTTPMethod,
 	ReqHandler,
-} from "../types.ts";
+} from "../types";
 
 export type CorsFunc = (params: { res: Res; cors: Cors }) => void;
 
