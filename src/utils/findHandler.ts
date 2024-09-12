@@ -6,6 +6,11 @@ import type { FindHandler } from "./types";
 export const findHandler: FindHandler = async ({ method, config, path }) => {
 	const fileEnding = config.typescript ? ".ts" : ".js";
 	const lowerCaseMethod = method.toLowerCase();
+
+	if (path[path.length - 1] !== "/") {
+		path = `${path}/`;
+	}
+
 	const modulePath = `${resolve("./")}${
 		config.routesPath
 	}${path}index${fileEnding}`;
