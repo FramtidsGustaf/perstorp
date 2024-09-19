@@ -112,3 +112,35 @@ export const get: ReqHandler({ res }) => {
 	res.json({message: "World"}) // No need to stringify it. Perstorp does that for you.
 }
 ```
+
+#### Context
+
+Use the context object to store things you might want to use in your handlers
+
+index.ts
+
+```ts
+import perstorp from "perstorp";
+import SomethingYouNeed from "somethingyouneed";
+
+const PORT = 3000;
+
+const somethingYouNeed = new SomethingYouNeed();
+
+const app = perstorp({ somethingYouNeed });
+
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
+});
+```
+
+the handler
+
+```ts
+import type { ReqHandler } from "perstorp";
+
+export const get: ReqHandler({ res, context }) => {
+	const {somethingYouNeed} = context;
+	res.json({message: "World"})
+}
+```
