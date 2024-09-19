@@ -5,6 +5,7 @@ import type {
 	Params,
 	ThrowError,
 	HTTPMethod,
+	Context,
 } from "../types.ts";
 
 export type ExecParams = {
@@ -14,6 +15,7 @@ export type ExecParams = {
 	params: Params;
 	data?: any;
 	throwError: ThrowError;
+	context?: Context;
 };
 
 export type Exec = (params: ExecParams) => void;
@@ -26,6 +28,7 @@ type ExecReqParams = {
 	res: Res;
 	params: Params;
 	throwError: ThrowError;
+	context?: Context;
 };
 
 export type ExecReq = (params: ExecReqParams) => void;

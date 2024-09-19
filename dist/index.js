@@ -20,6 +20,9 @@ import { resolve } from "path";
 var findHandler = async ({ method, config, path }) => {
   const fileEnding = config.typescript ? ".ts" : ".js";
   const lowerCaseMethod = method.toLowerCase();
+  if (path[path.length - 1] !== "/") {
+    path = `${path}/`;
+  }
   const modulePath = `${resolve("./")}${config.routesPath}${path}index${fileEnding}`;
   try {
     const module = await import(modulePath);
@@ -186,7 +189,7 @@ var findConfig = async () => {
 };
 
 // src/server.ts
-var perstorp = () => {
+var perstorp = (context) => {
   return createServer(async function(req, res) {
     const errors = [];
     const throwError = ({ errorMessage, statusCode }) => {
@@ -218,7 +221,8 @@ var perstorp = () => {
       res,
       params,
       throwError,
-      method: req.method
+      method: req.method,
+      context
     });
     if (config.logger) {
       logger({ req, res, errors });

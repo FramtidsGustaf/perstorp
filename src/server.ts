@@ -1,7 +1,14 @@
 import { createServer } from "http";
 import { execReq } from "./exec-req/execReq";
 
-import type { Req, Res, ThrowError, Perstorp, HTTPMethod } from "./types";
+import type {
+	Req,
+	Res,
+	ThrowError,
+	Perstorp,
+	HTTPMethod,
+	PerstorpFunction,
+} from "./types";
 
 import { cors } from "./utils/cors";
 import { logger } from "./utils/logger";
@@ -11,7 +18,7 @@ import { findConfig } from "./utils/findConfig";
 /**
  * This function creates a server that listens for incoming requests and executes the appropriate handler based on the request method and path.
  */
-export const perstorp = () => {
+export const perstorp: PerstorpFunction = (context?) => {
 	return createServer(async function (req: Req, res: Res) {
 		const errors: string[] = [];
 
@@ -52,6 +59,7 @@ export const perstorp = () => {
 			params,
 			throwError,
 			method: req.method as HTTPMethod,
+			context,
 		});
 
 		if (config.logger) {

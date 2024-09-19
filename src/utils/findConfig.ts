@@ -12,14 +12,6 @@ export const findConfig = async (): Promise<PerstorpConfig | null> => {
 
 		const config = JSON.parse(data);
 
-		// // readFile(process.cwd() + "/" + CONFIG_FILE_NAME, (err, data) => {
-		// // 	if (err) {
-		// // 		console.error("Error reading config file");
-		// // 		return null;
-		// // 	}
-		// // 	config = JSON.parse(data.toString());
-		// // });
-
 		return config;
 	} catch (error) {
 		return null;

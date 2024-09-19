@@ -43,3 +43,11 @@ export interface PerstorpConfig {
 	logger?: boolean;
 	typescript?: boolean;
 }
+
+export interface Context {
+	[key: string]: any;
+}
+
+export interface PerstorpFunction {
+	(context?: Context): Perstorp;
+}

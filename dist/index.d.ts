@@ -34,10 +34,16 @@ interface PerstorpConfig {
     logger?: boolean;
     typescript?: boolean;
 }
+interface Context {
+    [key: string]: any;
+}
+interface PerstorpFunction {
+    (context?: Context): Perstorp;
+}
 
 /**
  * This function creates a server that listens for incoming requests and executes the appropriate handler based on the request method and path.
  */
-declare const perstorp: () => Perstorp;
+declare const perstorp: PerstorpFunction;
 
 export { type Cors, type HTTPMethod, type PerstorpConfig, type Req, type ReqHandler, type Res, perstorp as default };

@@ -11,6 +11,7 @@ export const execReq: ExecReq = async ({
 	res,
 	params,
 	throwError,
+	context,
 }) => {
 	try {
 		const handler = await findHandler({ method, config, path });
@@ -27,6 +28,7 @@ export const execReq: ExecReq = async ({
 			res,
 			params,
 			throwError,
+			context,
 		};
 
 		setTimeout(() => {
