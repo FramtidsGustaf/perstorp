@@ -4,54 +4,60 @@ import { dataParser } from "../utils/dataparser";
 import type { ExecParams, ExecReq } from "./types";
 
 export const execReq: ExecReq = async ({
-	config,
-	method,
-	path,
-	req,
-	res,
-	params,
-	throwError,
-	context,
+  config,
+  method,
+  path,
+  req,
+  res,
+  params,
+  throwError,
+  context,
 }) => {
-	try {
-		const handler = await findHandler({ method, config, path });
+  try {
+    if (method === "OPTIONS") {
+      res.statusCode = 200;
+      res.end();
+      return;
+    }
 
-		if (!handler) {
-			res.statusCode = 404;
-			res.end();
-			return;
-		}
+    const handler = await findHandler({ method, config, path });
 
-		const execParams: ExecParams = {
-			handler,
-			req,
-			res,
-			params,
-			throwError,
-			context,
-		};
+    if (!handler) {
+      res.statusCode = 404;
+      res.end();
+      return;
+    }
 
-		setTimeout(() => {
-			res.statusCode = 408;
-			res.end();
-		}, config.timeout || 3000);
+    const execParams: ExecParams = {
+      handler,
+      req,
+      res,
+      params,
+      throwError,
+      context,
+    };
 
-		if (method !== "GET") {
-			req.on("data", async (rawData: any) => {
-				const data = await dataParser({ req, throwError, rawData });
-				exec({ ...execParams, data });
-			});
-		} else {
-			exec(execParams);
-		}
-	} catch (error: any) {
-		if (error.code === "MODULE_NOT_FOUND") {
-			res.statusCode = 404;
-			res.end();
-		} else {
-			console.error(error);
-			res.statusCode = 500;
-			res.end();
-		}
-	}
+    setTimeout(() => {
+      res.statusCode = 408;
+      res.end();
+    }, config.timeout || 3000);
+
+    if (method !== "GET") {
+      req.on("data", async (rawData: any) => {
+        const data = await dataParser({ req, throwError, rawData });
+        exec({ ...execParams, data });
+      });
+    } else {
+      exec(execParams);
+    }
+  } catch (error: any) {
+    if (error.code === "MODULE_NOT_FOUND") {
+      res.statusCode = 404;
+      res.end();
+    } else {
+      console.error(error);
+      res.statusCode = 500;
+      res.end();
+    }
+  }
 };
