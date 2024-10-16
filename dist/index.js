@@ -70,9 +70,15 @@ var execReq = async ({
   req,
   res,
   params,
-  throwError
+  throwError,
+  context
 }) => {
   try {
+    if (method === "OPTIONS") {
+      res.statusCode = 200;
+      res.end();
+      return;
+    }
     const handler = await findHandler({ method, config, path });
     if (!handler) {
       res.statusCode = 404;
@@ -84,7 +90,8 @@ var execReq = async ({
       req,
       res,
       params,
-      throwError
+      throwError,
+      context
     };
     setTimeout(() => {
       res.statusCode = 408;

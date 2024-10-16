@@ -6,7 +6,7 @@ interface Res extends ServerResponse<IncomingMessage> {
         [key: string]: string;
     }) => void;
 }
-type HTTPMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+type HTTPMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "OPTIONS";
 type Perstorp = Server<typeof IncomingMessage, typeof ServerResponse>;
 interface Params {
     [key: string]: string;

@@ -22,15 +22,15 @@ It should look something like this:
 
 ```json
 {
-	"cors": {
-		"origin": "*",
-		"methods": "GET,POST,PUT,DELETE",
-		"headers": "Content-Type,Authorization"
-	},
-	"routesPath": "/api/v1/routes",
-	"logger": true,
-	"timeout": 1000,
-	"typescript": true
+  "cors": {
+    "origin": "*",
+    "methods": "GET,POST,PUT,DELETE",
+    "headers": "Content-Type,Authorization"
+  },
+  "routesPath": "/api/v1/routes",
+  "logger": true,
+  "timeout": 1000,
+  "typescript": true
 }
 ```
 
@@ -50,7 +50,7 @@ const PORT = 3000;
 const app = perstorp();
 
 app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 ```
 
@@ -70,9 +70,9 @@ The function has to have the name **get**
 ```ts
 import type { ReqHandler } from "perstorp";
 
-export const get: ReqHandler({ res }) => {
-   res.json({message: "World"})
-}
+export const get: ReqHandler = ({ res }) => {
+  res.json({ message: "World" });
+};
 ```
 
 #### Data
@@ -82,10 +82,10 @@ To get the data that is sent with the request just use the data parameter in you
 ```ts
 import type { ReqHandler } from "perstorp";
 
-export const post: ReqHandler({ res, data }) => {
-  console.log(data) // Outputs json recieved in the request
-  res.json({message: "World"})
-}
+export const post: ReqHandler = ({ res, data }) => {
+  console.log(data); // Outputs json recieved in the request
+  res.json({ message: "World" });
+};
 ```
 
 #### Search parameters
@@ -95,10 +95,10 @@ To get the search params for the request just use the params parameter in your r
 ```ts
 import type { ReqHandler } from "perstorp";
 
-export const post: ReqHandler({ res, params }) => {
-  console.log(params) // Outputs search params
-  res.json({message: "World"})
-}
+export const post: ReqHandler = ({ res, params }) => {
+  console.log(params); // Outputs search params
+  res.json({ message: "World" });
+};
 ```
 
 #### Sending a JSON response
@@ -108,9 +108,9 @@ Use the json function on the res object
 ```ts
 import type { Reqhandler } from "perstorp";
 
-export const get: ReqHandler({ res }) => {
-	res.json({message: "World"}) // No need to stringify it. Perstorp does that for you.
-}
+export const get: ReqHandler = ({ res }) => {
+  res.json({ message: "World" }); // No need to stringify it. Perstorp does that for you.
+};
 ```
 
 #### Context
@@ -130,7 +130,7 @@ const somethingYouNeed = new SomethingYouNeed();
 const app = perstorp({ somethingYouNeed });
 
 app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 ```
 
@@ -139,8 +139,8 @@ the handler
 ```ts
 import type { ReqHandler } from "perstorp";
 
-export const get: ReqHandler({ res, context }) => {
-	const {somethingYouNeed} = context;
-	res.json({message: "World"})
-}
+export const get: ReqHandler = ({ res, context }) => {
+  const { somethingYouNeed } = context;
+  res.json({ message: "World" });
+};
 ```
